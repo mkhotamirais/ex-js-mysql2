@@ -3,6 +3,7 @@ import "dotenv/config";
 import db from "./config/db.js";
 import { corsOptions, credentials } from "./middleware.js";
 import cors from "cors";
+import "dotenv/config";
 
 import v1Router from "./app/v1/router.js";
 
