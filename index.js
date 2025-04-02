@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.send("Api Mysql2");
+  res.send("Api Mysql22");
 });
 
 app.use("/api-mysql2/v1", v1Router);
