@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.send("ex-js-mysql2");
+  res.send("ex-js-mysql22");
 });
 
 app.use("/api", router);
