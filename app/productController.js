@@ -1,4 +1,5 @@
-import db from "../../config/db.js";
+import db from "../config/db.js";
+import { errMsg } from "../helpers/functions.js";
 
 export const createProduct = async (req, res) => {
   const { name, price } = req.body;
@@ -10,8 +11,7 @@ export const createProduct = async (req, res) => {
     const [data] = await db.query("INSERT INTO Products (name, price) VALUES (?, ?)", [name, price]);
     res.status(201).json({ message: `Create ${name} success` });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: error.message });
+    errMsg(res, error);
   }
 };
 
@@ -20,8 +20,7 @@ export const getProducts = async (req, res) => {
     const [data] = await db.query("SELECT * FROM Products ORDER BY createdAt DESC");
     res.status(200).json(data);
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: error.message });
+    errMsg(res, error);
   }
 };
 
@@ -32,8 +31,7 @@ export const getProductById = async (req, res) => {
     if (data.length === 0) return res.status(400).json({ error: `Product id ${id} not found` });
     res.status(200).json(data[0]);
   } catch (error) {
-    console.log(error);
-    res.status(404).json({ message: error.message });
+    errMsg(res, error);
   }
 };
 
@@ -51,8 +49,7 @@ export const updateProduct = async (req, res) => {
     if (result.affectedRows === 0) return res.status(400).json({ error: `Product id ${id} not found` });
     res.status(200).json({ message: `Update ${name} success` });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: error.message });
+    errMsg(res, error);
   }
 };
 
@@ -63,7 +60,6 @@ export const deleteProduct = async (req, res) => {
     if (result.affectedRows === 0) return res.status(400).json({ error: `Product id ${id} not found` });
     res.status(200).json({ message: `Delete product success` });
   } catch (error) {
-    console.log(error);
-    res.status(404).json({ message: error.message });
+    errMsg(res, error);
   }
 };
